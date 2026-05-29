@@ -17,7 +17,7 @@ export function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8 mt-40 md:mt-0"
+            className="space-y-8 mt-30 md:mt-0"
           >
             <div>
               <motion.h1

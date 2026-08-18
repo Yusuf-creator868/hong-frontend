@@ -1,103 +1,32 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react'
+import { ArrowRight, Play, Check } from 'lucide-react'
+import logo from '../assets/logo.png'
 
 export function Hero() {
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-100/20 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8 mt-10 md:mt-0"
-          >
-            <div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight text-balance"
-              >
-                Transform Your Future with{' '}
-                <span className="text-red-700">Excellence in Education</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl text-gray-600 mt-6 leading-relaxed text-balance"
-              >
-                Discover flexible learning formats tailored to your pace. Expert instruction from industry leaders.
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <button className="bg-accent text-white px-8 py-4 rounded-lg font-semibold bg-red-700 transition-colors flex items-center justify-center gap-2 group cursor-pointer">
-                Start Learning
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="border-2 border-accent text-red-700 px-8 py-4 rounded-lg font-semibold hover:bg-accent/5 transition-colors cursor-pointer">
-                Learn More
-              </button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-6 pt-8"
-            >
-              <div>
-                <p className="text-3xl font-bold text-red-700">500+</p>
-                <p className="text-gray-600 text-sm">Active Students</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-red-700">50+</p>
-                <p className="text-gray-600 text-sm">Expert Instructors</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-red-700">98%</p>
-                <p className="text-gray-600 text-sm">Success Rate</p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Visual Element */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden md:block relative h-96"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-blue-100 rounded-3xl" />
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zfvVu1LfuGesQz5eY9RznAMFHF3kV7.png"
-                alt="Hong Kong Academy Logo"
-                className="w-48 h-48 object-contain"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
+    <section className="relative min-h-[720px] overflow-hidden bg-[#f8f8f6] pt-28 sm:min-h-[780px] sm:pt-32">
+      <div className="absolute -right-32 top-20 h-80 w-80 rounded-full bg-red-100/60 blur-3xl" />
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:px-10 lg:pb-24">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }} className="relative z-10 max-w-2xl">
+          <div className="mb-7 flex items-center gap-3 text-xs font-semibold uppercase tracking-[.22em] text-[#c40011]"><span className="h-px w-8 bg-[#c40011]" /> Language education, reimagined</div>
+          <h1 className="max-w-xl text-5xl font-semibold leading-[1.03] tracking-[-.055em] text-neutral-950 sm:text-6xl lg:text-[76px]">Open the world <span className="text-[#c40011]">through language.</span></h1>
+          <p className="mt-7 max-w-lg text-base leading-7 text-neutral-600 sm:text-lg">Learn with expert teachers, thoughtful programs, and a community that makes every new word feel possible.</p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <button onClick={() => scrollTo('contact')} className="group flex items-center justify-center gap-3 rounded-full bg-[#c40011] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-900/10 transition hover:-translate-y-0.5 hover:bg-[#a9000f]">Find your course <ArrowRight size={17} className="transition group-hover:translate-x-1" /></button>
+            <button onClick={() => scrollTo('about')} className="flex items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-800 transition hover:border-[#c40011] hover:text-[#c40011]"><Play size={15} fill="currentColor" /> Discover our approach</button>
+          </div>
+          <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 text-sm text-neutral-600"><span className="flex items-center gap-2"><Check size={16} className="text-[#c40011]" /> Certified teachers</span><span className="flex items-center gap-2"><Check size={16} className="text-[#c40011]" /> Online & offline</span><span className="flex items-center gap-2"><Check size={16} className="text-[#c40011]" /> Any level</span></div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }} className="relative mx-auto w-full max-w-xl">
+          <div className="relative aspect-[.88] overflow-hidden rounded-[2rem] bg-neutral-200 shadow-2xl shadow-neutral-900/10 sm:aspect-square">
+            <img src="https://images.pexels.com/photos/6503100/pexels-photo-6503100.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Teacher leading a lively language class" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/55 via-transparent to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between text-white sm:bottom-7 sm:left-7 sm:right-7"><div><p className="text-xs uppercase tracking-[.18em] text-white/70">The academy</p><p className="mt-1 text-xl font-medium">Where curiosity speaks louder.</p></div><img src={logo} alt="" className="hidden h-14 w-auto rounded-lg bg-white p-1 sm:block" /></div>
+          </div>
+          <div className="absolute -bottom-5 -left-3 rounded-2xl bg-white px-5 py-4 shadow-xl sm:-left-8"><p className="text-2xl font-semibold text-[#c40011]">11+</p><p className="text-xs font-medium text-neutral-500">languages to choose from</p></div>
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }

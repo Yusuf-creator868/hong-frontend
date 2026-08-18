@@ -1,182 +1,38 @@
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import logo from "../assets/logo.png";
+import { useState } from 'react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
+import logo from '../assets/logo.png'
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const links = [
+    { label: 'About', section: 'about' },
+    { label: 'Languages', section: 'languages' },
+    { label: 'Branches', section: 'branches' },
+  ]
 
-  const navLinks = [
-    { label: "About", section: "about" },
-    { label: "Branches", section: "branches" },
-    { label: "Contact", section: "contact" },
-  ];
-
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-    });
-
-    setIsOpen(false);
-  };
+  const scrollTo = (section) => {
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' })
+    setIsOpen(false)
+  }
 
   return (
-    <nav
-      className="
-        sticky
-        top-0
-        z-50
-        bg-white/90
-        backdrop-blur-xl
-        border-b
-        border-gray-100
-      "
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0 cursor-pointer">
-            <img
-              src={logo}
-              alt="Hong Kong Academy"
-              className="h-16 w-auto"
-            />
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToSection(link.section)}
-                className="
-                  relative
-                  text-gray-700
-                  font-medium
-                  transition-colors
-                  duration-300
-                  hover:text-red-700
-                  after:absolute
-                  after:left-0
-                  after:-bottom-1
-                  after:h-[2px]
-                  after:w-0
-                  after:bg-red-700
-                  after:transition-all
-                  after:duration-300
-                  hover:after:w-full
-                  cursor-pointer
-                "
-              >
-                {link.label}
-              </button>
-            ))}
-
-            {/* CTA Button */}
-            <button
-              className="
-                bg-red-700
-                text-white
-                cursor-pointer
-                px-7
-                py-3
-                rounded-2xl
-                font-medium
-                transition-all
-                duration-300
-                hover:bg-red-800
-                hover:shadow-[0_10px_30px_rgba(220,38,38,0.35)]
-                hover:-translate-y-1
-                active:scale-95
-              "
-            >
-              Enroll Now
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="
-                p-2
-                rounded-xl
-                text-gray-700
-                hover:bg-gray-100
-                transition-all
-              "
-            >
-              {isOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
-          </div>
+    <header className="absolute inset-x-0 top-0 z-50">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Hong Kong Academy home" className="rounded-xl bg-white/95 p-1 shadow-sm">
+          <img src={logo} alt="Hong Kong Academy" className="h-12 w-auto sm:h-14" />
+        </button>
+        <div className="hidden items-center gap-9 rounded-full bg-white/90 px-7 py-3.5 shadow-sm backdrop-blur md:flex">
+          {links.map((link) => <button key={link.section} onClick={() => scrollTo(link.section)} className="text-sm font-medium text-neutral-600 transition hover:text-[#c40011]">{link.label}</button>)}
+          <button onClick={() => scrollTo('contact')} className="flex items-center gap-1.5 rounded-full bg-[#c40011] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#a9000f]">Start a conversation <ArrowUpRight size={15} /></button>
         </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`
-            md:hidden
-            overflow-hidden
-            transition-all
-            duration-300
-            ${
-              isOpen
-                ? "max-h-[400px] opacity-100 pb-6"
-                : "max-h-0 opacity-0"
-            }
-          `}
-        >
-          <div
-            className="
-              bg-white
-              rounded-3xl
-              border
-              border-gray-100
-              shadow-xl
-              p-4
-              space-y-2
-            "
-          >
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => scrollToSection(link.section)}
-                className="
-                  w-full
-                  text-left
-                  px-4
-                  py-3
-                  rounded-2xl
-                  text-gray-700
-                  font-medium
-                  hover:bg-red-50
-                  hover:text-red-700
-                  transition-all
-                  duration-300
-                "
-              >
-                {link.label}
-              </button>
-            ))}
-
-            {/* Mobile CTA */}
-            <button
-              className="
-                w-full
-                mt-3
-                bg-red-700
-                text-white
-                py-4
-                rounded-2xl
-                font-medium
-                transition-all
-                duration-300
-                hover:bg-red-800
-              "
-            >
-              Enroll Now
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
+        <button onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? 'Close menu' : 'Open menu'} className="rounded-xl bg-white p-3 text-neutral-800 shadow-sm md:hidden">
+          {isOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+      </nav>
+      {isOpen && <div className="mx-5 rounded-2xl border border-neutral-100 bg-white p-3 shadow-xl md:hidden">
+        {links.map((link) => <button key={link.section} onClick={() => scrollTo(link.section)} className="block w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-neutral-700 hover:bg-red-50 hover:text-[#c40011]">{link.label}</button>)}
+        <button onClick={() => scrollTo('contact')} className="mt-2 w-full rounded-xl bg-[#c40011] px-4 py-3 text-sm font-semibold text-white">Start a conversation</button>
+      </div>}
+    </header>
+  )
 }

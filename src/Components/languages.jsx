@@ -1,0 +1,8 @@
+import { motion } from 'motion/react'
+import { ArrowUpRight } from 'lucide-react'
+
+const languages = ['Chinese', 'Korean', 'Japanese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Turkish', 'Russian', 'Uzbek']
+
+export default function Languages() {
+  return <section id="languages" className="bg-[#f8f8f6] py-24 sm:py-28"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10"><div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="mb-4 text-xs font-semibold uppercase tracking-[.22em] text-[#c40011]">Your next chapter</p><h2 className="text-4xl font-semibold tracking-[-.04em] text-neutral-950 sm:text-5xl">Find your language.</h2></div><p className="max-w-xs text-sm leading-6 text-neutral-500">From your first phrase to fluent conversation, start exactly where you are.</p></div><div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">{languages.map((language, index) => <motion.div key={language} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * .04 }} viewport={{ once: true }} className={`group flex items-center justify-between rounded-2xl border px-5 py-5 transition hover:-translate-y-1 hover:border-[#c40011] hover:bg-white hover:shadow-lg ${index === 3 ? 'border-[#c40011] bg-[#c40011] text-white' : 'border-neutral-200 bg-white/50 text-neutral-800'}`}><span className="font-medium">{language}</span><ArrowUpRight size={17} className={`transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${index === 3 ? 'text-white' : 'text-neutral-400 group-hover:text-[#c40011]'}`} /></motion.div>)}</div></div></section>
+}
